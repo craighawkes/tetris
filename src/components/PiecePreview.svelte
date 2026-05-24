@@ -43,11 +43,14 @@
   .wrap {
     background: var(--panel-bg);
     border-radius: 8px;
-    padding: 8px 10px 10px;
+    padding: 6px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
     min-width: 0;
+  }
+  @media (min-width: 460px) {
+    .wrap { padding: 8px 10px 10px; gap: 6px; }
   }
   .wrap.dim {
     opacity: 0.45;

@@ -226,7 +226,7 @@
     gap: 10px;
   }
   h1 {
-    font-size: clamp(34px, 9vw, 44px);
+    font-size: clamp(28px, 7vw, 40px);
     margin: 0;
     font-weight: 800;
     color: var(--text);
@@ -241,10 +241,13 @@
   .score-box {
     background: var(--panel-bg);
     color: var(--text);
-    padding: 6px 12px;
+    padding: 4px 8px;
     border-radius: 6px;
     text-align: center;
-    min-width: 70px;
+    min-width: 56px;
+  }
+  @media (min-width: 460px) {
+    .score-box { padding: 6px 12px; min-width: 70px; }
   }
   .help-btn {
     align-self: stretch;
@@ -252,10 +255,13 @@
     color: var(--text);
     border: none;
     border-radius: 6px;
-    width: 36px;
-    font-size: 20px;
+    width: 32px;
+    font-size: 18px;
     font-weight: 700;
     padding: 0;
+  }
+  @media (min-width: 460px) {
+    .help-btn { width: 36px; font-size: 20px; }
   }
   .help-btn:hover {
     filter: brightness(1.1);
@@ -278,16 +284,21 @@
   }
 
   .layout {
-    display: grid;
-    grid-template-columns: 1fr 2.4fr 1fr;
-    gap: 10px;
-    align-items: start;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: stretch;
   }
   .side {
+    flex: 0 0 60px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     min-width: 0;
+  }
+  @media (min-width: 460px) {
+    .layout { gap: 10px; }
+    .side { flex-basis: 96px; }
   }
   .next-list {
     display: flex;
@@ -302,7 +313,10 @@
   .stat {
     background: var(--panel-bg);
     border-radius: 8px;
-    padding: 8px 10px;
+    padding: 6px 8px;
+  }
+  @media (min-width: 460px) {
+    .stat { padding: 8px 10px; }
   }
   .stat-label {
     font-size: 10px;
@@ -318,6 +332,13 @@
 
   .board-wrap {
     position: relative;
+    /* Take whatever horizontal room is left after the side panels, but cap
+       the board width at half the available vertical room (chrome ~170px),
+       so it never grows so tall it pushes the controls off the screen. */
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: min(380px, calc((100svh - 170px) / 2));
+    aspect-ratio: 1 / 2;
     touch-action: none;
     user-select: none;
     -webkit-user-select: none;
